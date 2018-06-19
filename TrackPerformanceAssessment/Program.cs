@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using System.Windows.Forms;
+using TrackPerformanceAssessment.Framework.Core;
+using TrackPerformanceAssessment.Framework.Core.Exception;
 
 namespace TrackPerformanceAssessment
 {
@@ -16,7 +17,31 @@ namespace TrackPerformanceAssessment
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            try
+            {
+                using (MainForm form = new MainForm())
+                using (MainGame game = new MainGame())
+                {
+                    if (game.Init(form))
+                    {
+                        form.Show();
+
+                        while (form.Created)
+                        {
+                            game.Update();
+                            game.Render();
+                            System.Threading.Thread.Sleep(10);
+                            Application.DoEvents();
+                        }
+                    }
+                    else throw new GameInitializeException();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e.Message}\n{e.StackTrace}");
+            }
         }
     }
 }
