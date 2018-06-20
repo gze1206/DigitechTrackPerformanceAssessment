@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using TrackPerformanceAssessment.Framework.Core;
-using TrackPerformanceAssessment.Framework.Core.Exception;
+using TPA.Framework.Core;
+using TPA.Framework.Core.Exception;
 
-namespace TrackPerformanceAssessment
+namespace TPA
 {
+    public delegate void Action();
+    public delegate void Action<T1, T2>(T1 t1, T2 t2);
+
     static class Program
     {
         /// <summary>
