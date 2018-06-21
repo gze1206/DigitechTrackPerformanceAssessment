@@ -10,15 +10,23 @@ namespace TPA.Framework.Core.Scene
     {
         public BaseScene()
         {
+            root = new GameObject();
             Init();
         }
 
         public SceneEvent onActive = () => { };
         public SceneEvent onInactive = () => { };
+        public GameObject root;
 
         public abstract void Init();
-        public abstract void Update();
-        public abstract void Render();
+        public virtual void Update()
+        {
+            root.Update();
+        }
+        public virtual void Render()
+        {
+            root.Render();
+        }
         public abstract void Dispose();
     }
 }

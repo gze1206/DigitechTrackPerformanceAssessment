@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 using Microsoft.DirectX;
@@ -7,6 +8,7 @@ using Microsoft.DirectX.Direct3D;
 
 using TPA.Framework.Core.Manager;
 using TPA.Framework.Core.Scene;
+
 
 namespace TPA.Framework.Core
 {
@@ -41,6 +43,12 @@ namespace TPA.Framework.Core
             // Key Event
             form.KeyDown += InputManager.Get.onKeyDown;
             form.KeyUp += InputManager.Get.onKeyUp;
+
+            // System Key Event
+            InputManager.Get.onKeyDown += (object sender, KeyEventArgs args) =>
+            {
+                if (args.KeyCode == Keys.Escape) form.Close();
+            };
 
             // Mouse Event
             form.MouseDown += InputManager.Get.onMouseDown;

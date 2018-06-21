@@ -11,6 +11,7 @@ namespace TPA.Framework.Core.Scene
         public void AddScene(string key, BaseScene scene) => sceneMaps.Add(key, scene);
         public void AddScene<T>(string key) where T: BaseScene, new() => sceneMaps.Add(key, new T());
         public BaseScene GetScene(string key) => sceneMaps[key];
+        public BaseScene GetCurrentScene => activeScene;
 
         public void SetScene(string key) => nextKey = key;
 
