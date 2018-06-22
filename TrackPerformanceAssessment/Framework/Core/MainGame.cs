@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 using Microsoft.DirectX;
@@ -16,11 +15,12 @@ namespace TPA.Framework.Core
     {
         public MainForm form { get; private set; } = null;
         public Device device { get; private set; } = null;
-        public Texture texture { get; private set; } = null;
         public PresentParameters presentParameters { get; private set; } = null;
+        public Sprite sprite { get; private set; } = null;
 
         // On Device reset
-        public event Action onReset = () => { };
+        public event Action onReset = () => { Debug.Log("On Reset!"); };
+        public event Action onInitGame = () => { };
 
         public bool Init(MainForm form)
         {
@@ -31,30 +31,42 @@ namespace TPA.Framework.Core
             presentParameters.EnableAutoDepthStencil = true;
             presentParameters.AutoDepthStencilFormat = DepthFormat.D16;
 
+            // Set Scene
+            onInitGame += () =>
+            {
+                SceneManager.Get.AddScene<Custom.Scenes.InGame>("InGame");
+
+                SceneManager.Get.SetScene("InGame");
+            };
+
             bool ret = InitGraphics();
 
-            // Resize Event
-            form.Resize += new EventHandler((object sender, EventArgs e) =>
+            // Device Reset Event
+            device.DeviceReset += new EventHandler((object sender, EventArgs e) =>
             {
-                InitGraphics();
+                //InitGraphics();
                 onReset();
             });
-
-            // Key Event
-            form.KeyDown += InputManager.Get.onKeyDown;
-            form.KeyUp += InputManager.Get.onKeyUp;
 
             // System Key Event
             InputManager.Get.onKeyDown += (object sender, KeyEventArgs args) =>
             {
-                if (args.KeyCode == Keys.Escape) form.Close();
+                if (args.KeyData == Keys.Escape) form.Close();
             };
+
+            // Key Event
+            form.KeyDown += InputManager.Get.onKeyDown;
+            form.KeyUp += InputManager.Get.onKeyUp;
 
             // Mouse Event
             form.MouseDown += InputManager.Get.onMouseDown;
             form.MouseUp += InputManager.Get.onMouseUp;
             form.MouseMove += InputManager.Get.onMouseMove;
             form.MouseWheel += InputManager.Get.onMouseWheel;
+
+            sprite = new Sprite(device);
+
+            onInitGame();
 
             return ret;
         }
@@ -118,7 +130,9 @@ namespace TPA.Framework.Core
             device.Clear(ClearFlags.Target, Color.PowderBlue, 1.0f, 0);
             device.BeginScene();
             {
+                sprite.Begin(SpriteFlags.AlphaBlend);
                 SceneManager.Get?.Render();
+                sprite.End();
             }
             device.EndScene();
             device.Present();
@@ -130,8 +144,8 @@ namespace TPA.Framework.Core
             InputManager.Get?.Dispose();
             base.Dispose();
 
+            sprite?.Dispose();
             device?.Dispose();
-            texture?.Dispose();
         }
     }
 }

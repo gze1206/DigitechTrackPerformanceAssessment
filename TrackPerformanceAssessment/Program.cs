@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+
 using TPA.Framework.Core;
 using TPA.Framework.Core.Exception;
 
@@ -18,14 +19,19 @@ namespace TPA
         [STAThread]
         static void Main()
         {
+            // Load DLL
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResolveAssembly);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             try
             {
                 using (MainForm form = new MainForm())
-                using (MainGame game = new MainGame())
+                using (MainGame game = MainGame.Get)
                 {
+                    Debug.Setup();
+                    
                     if (game.Init(form))
                     {
                         form.Show();
@@ -41,10 +47,41 @@ namespace TPA
                     else throw new GameInitializeException();
                 }
             }
-            catch (Exception e)
+            catch (GameException e)
             {
-                MessageBox.Show($"{e.Message}\n{e.StackTrace}");
+                Debug.Exception(e);
+                Console.ReadKey();
             }
+        }
+
+        // Load DLL from Resources
+        static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            Assembly thisAssembly = Assembly.GetExecutingAssembly();
+            string resourceName = null;
+            string fileName = args.Name.Substring(0, args.Name.IndexOf(',')) + ".dll";
+            foreach (string name in thisAssembly.GetManifestResourceNames())
+            {
+                if (name.EndsWith(fileName))
+                {
+                    resourceName = name;
+                }
+            }
+
+            if (resourceName != null)
+            {
+                using (Stream stream = thisAssembly.GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        byte[] assembly = new byte[stream.Length];
+                        stream.Read(assembly, 0, assembly.Length);
+                        Console.WriteLine("Dll file load : " + resourceName);
+                        return Assembly.Load(assembly);
+                    }
+                }
+            }
+            return null;
         }
     }
 }

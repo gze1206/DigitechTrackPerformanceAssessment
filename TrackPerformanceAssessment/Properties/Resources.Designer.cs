@@ -59,5 +59,95 @@ namespace TPA.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_AudioVideoPlayback {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_AudioVideoPlayback", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_Diagnostics {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_Diagnostics", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_Direct3D {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_Direct3D", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_Direct3DX {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_Direct3DX", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_DirectDraw {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_DirectDraw", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_DirectInput {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_DirectInput", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_DirectPlay {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_DirectPlay", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] Microsoft_DirectX_DirectSound {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_DirectX_DirectSound", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

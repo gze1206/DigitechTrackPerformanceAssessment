@@ -7,5 +7,10 @@
 
         public virtual void Update() { }
         public virtual void Render() { }
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }

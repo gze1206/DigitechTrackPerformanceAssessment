@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{89ED0C12-98CA-4CC9-BA49-22510F1B0C45}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>TPA</RootNamespace>
     <AssemblyName>TrackPerformanceAssessment</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
@@ -14,7 +14,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
@@ -77,12 +80,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\Scenes\InGame.cs" />
+    <Compile Include="Framework\Core\Component\SpriteRenderer.cs" />
     <Compile Include="Framework\Core\Component\Component.cs" />
+    <Compile Include="Framework\Core\Debug.cs" />
     <Compile Include="Framework\Core\Exceptions.cs" />
     <Compile Include="Framework\Core\GameObject.cs" />
     <Compile Include="Framework\Core\Manager\InputManager.cs" />
+    <Compile Include="Framework\Core\Resource\ResourceManager.cs" />
     <Compile Include="Framework\Core\Scene\BaseScene.cs" />
     <Compile Include="Framework\Core\Scene\SceneManager.cs" />
+    <Compile Include="Framework\Core\Component\Transform.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,5 +127,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.AudioVideoPlayback.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.Diagnostics.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.Direct3D.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.Direct3DX.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.DirectDraw.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.DirectInput.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.DirectPlay.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.DirectSound.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Microsoft.DirectX.dll" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

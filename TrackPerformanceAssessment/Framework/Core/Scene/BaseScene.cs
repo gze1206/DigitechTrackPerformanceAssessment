@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TPA.Framework.Core.Scene
 {
@@ -11,12 +9,11 @@ namespace TPA.Framework.Core.Scene
         public BaseScene()
         {
             root = new GameObject();
-            Init();
         }
 
         public SceneEvent onActive = () => { };
         public SceneEvent onInactive = () => { };
-        public GameObject root;
+        public GameObject root { get; private set; }
 
         public abstract void Init();
         public virtual void Update()

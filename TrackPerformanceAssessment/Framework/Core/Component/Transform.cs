@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 using Microsoft.DirectX;
 
@@ -94,7 +92,6 @@ namespace TPA.Framework.Core
         {
             return ((IEnumerable<Transform>)childs).GetEnumerator();
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<Transform>)childs).GetEnumerator();
