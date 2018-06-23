@@ -35,7 +35,6 @@ namespace TPA.Framework.Core
             onInitGame += () =>
             {
                 SceneManager.Get.AddScene<Custom.Scenes.InGame>("InGame");
-
                 SceneManager.Get.SetScene("InGame");
             };
 
@@ -51,7 +50,9 @@ namespace TPA.Framework.Core
             // System Key Event
             InputManager.Get.onKeyDown += (object sender, KeyEventArgs args) =>
             {
+                Debug.Log(args.KeyData);
                 if (args.KeyData == Keys.Escape) form.Close();
+                if (args.KeyCode == Keys.C) DevConsole.Get.Show();
             };
 
             // Key Event

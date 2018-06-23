@@ -9,7 +9,7 @@ namespace TPA.Framework.Core
 {
     public class Transform : Component.Component, IEnumerable<Transform>
     {
-        private Vector3 _pos = new Vector3(), _rot = new Vector3(), _scale = new Vector3();
+        private Vector3 _pos = new Vector3(), _rot = new Vector3(), _scale = new Vector3(1,1,1);
         private Matrix _locMat = new Matrix();
         private ChildList childs = new ChildList();
 

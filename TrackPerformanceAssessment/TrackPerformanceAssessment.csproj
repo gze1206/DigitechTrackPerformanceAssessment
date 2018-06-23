@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{89ED0C12-98CA-4CC9-BA49-22510F1B0C45}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>TPA</RootNamespace>
     <AssemblyName>TrackPerformanceAssessment</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
@@ -80,6 +80,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\Components\CharacterController.cs" />
+    <Compile Include="DevConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DevConsole.Designer.cs">
+      <DependentUpon>DevConsole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\Scenes\InGame.cs" />
     <Compile Include="Framework\Core\Component\SpriteRenderer.cs" />
     <Compile Include="Framework\Core\Component\Component.cs" />
@@ -99,8 +106,17 @@
     </Compile>
     <Compile Include="Framework\Core\MainGame.cs" />
     <Compile Include="Framework\Core\Singleton.cs" />
+    <Compile Include="MapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapEditor.Designer.cs">
+      <DependentUpon>MapEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DevConsole.resx">
+      <DependentUpon>DevConsole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

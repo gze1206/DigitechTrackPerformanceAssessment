@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Drawing;
 
 namespace TPA.Framework.Core
 {
@@ -14,27 +14,29 @@ namespace TPA.Framework.Core
         {
             get => LogLevel.All;
         }
-        private static ConsoleColor GetColor(LogLevel level)
+        private static Color GetColor(LogLevel level)
         {
-            if (level == LogLevel.Warning) return ConsoleColor.Yellow;
-            if (level == LogLevel.Error) return ConsoleColor.Red;
-            return ConsoleColor.White;
+            if (level == LogLevel.Warning) return Color.Yellow;
+            if (level == LogLevel.Error) return Color.Red;
+            return Color.White;
         }
 
         private static void Write(LogLevel level, string message)
         {
             if (displayLevel >= level) return;
-            ConsoleColor color = Console.ForegroundColor;
-            Console.ForegroundColor = GetColor(level);
-            Console.WriteLine($"{level} : {message}");
-            Console.ForegroundColor = color;
-        }
 
-        public static void Setup()
-        {
-            Console.Title = "framework by gze1206";
-        }
+            var console = DevConsole.Get.console;
+            var color = console.SelectionColor;
 
+            console.SelectionStart = console.TextLength;
+            console.SelectionColor = GetColor(level);
+            console.AppendText($"{level} : {message}");
+            console.AppendText(Environment.NewLine);
+            console.SelectionStart = console.TextLength;
+            console.SelectionColor = color;
+            console.ScrollToCaret();
+        }
+        
         public static void Log(object msg) => Write(LogLevel.Log, (msg ?? "null").ToString());
         public static void Warning(object msg) => Write(LogLevel.Warning, (msg ?? "null").ToString());
         public static void Error(object msg) => Write(LogLevel.Error, (msg ?? "null").ToString());

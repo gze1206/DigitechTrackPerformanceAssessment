@@ -30,8 +30,6 @@ namespace TPA
                 using (MainForm form = new MainForm())
                 using (MainGame game = MainGame.Get)
                 {
-                    Debug.Setup();
-                    
                     if (game.Init(form))
                     {
                         form.Show();
