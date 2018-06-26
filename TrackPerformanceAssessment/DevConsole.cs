@@ -24,7 +24,6 @@ namespace TPA.Framework.Core
         private Dictionary<string, CommandFunc> dicCmd = new Dictionary<string, CommandFunc>()
         {
             ["test"] = (raw, args) => { Debug.Log(args); },
-            ["editor"] = (raw, args) => { new Custom.MapEditor().Show(); },
         };
 
         public DevConsole()
@@ -35,6 +34,11 @@ namespace TPA.Framework.Core
             dicCmd["hide"] = (raw, args) =>
             {
                 Close();
+            };
+            dicCmd["editor"] = (raw, args) =>
+            {
+                new Custom.MapEditor().Show();
+                dicCmd["hide"]("/hide force", "force");
             };
         }
 

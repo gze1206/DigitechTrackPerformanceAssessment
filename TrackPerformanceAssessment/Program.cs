@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -10,6 +11,9 @@ namespace TPA
 {
     public delegate void Action();
     public delegate void Action<T1, T2>(T1 t1, T2 t2);
+
+    [Serializable]
+    public struct Tuple<T1, T2> { public T1 first; public T2 second; public Tuple(T1 one, T2 two) { first = one; second = two; } }
 
     static class Program
     {

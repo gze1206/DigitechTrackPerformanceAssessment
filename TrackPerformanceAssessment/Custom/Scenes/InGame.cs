@@ -26,11 +26,11 @@ namespace TPA.Custom.Scenes
 
         public override void Init()
         {
-            Resources.Get.GetTexture("../Resources/PsBulletM.png");
+            Resources.Get.GetTexture("../Resources/player.png");
 
             gameObject = new GameObject();
             var renderer = gameObject.AddComponent<SpriteRenderer>();
-            renderer.path = "../Resources/PsBulletM.png";
+            renderer.path = "../Resources/player.png";
             renderer.pivot = new Vector3(128, 256, 0);
             gameObject.AddComponent<CharacterController>();
         }

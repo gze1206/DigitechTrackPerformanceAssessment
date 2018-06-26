@@ -75,7 +75,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "DevConsole";
             this.Text = "DevConsole";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DevConsole_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
